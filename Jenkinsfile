@@ -21,7 +21,8 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: "$SONAR_CREDENTIAL_ID", variable: 'SONAR_TOKEN')]) {
                     withSonarQubeEnv('sonarqube', envOnly: true) {
-                        println ${env.SONAR_HOST_URL}
+                      // This expands the evironment variables SONAR_CONFIG_NAME, SONAR_HOST_URL, SONAR_AUTH_TOKEN that can be used by any script.
+                      println ${env.SONAR_HOST_URL} 
                     }
                 }
             }
