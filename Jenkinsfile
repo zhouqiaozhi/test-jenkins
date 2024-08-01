@@ -20,7 +20,6 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: "$SONAR_CREDENTIAL_ID", variable: 'SONAR_TOKEN')]) {
                     withSonarQubeEnv('sonarqube') {
-                        sh "chmod +x gradlew"
                         sh './gradlew sonarqube'
                     }
                 }
