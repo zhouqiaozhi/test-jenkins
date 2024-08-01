@@ -19,17 +19,15 @@ pipeline {
 
         stage('sonarqube analysis') {
             steps {
-                withCredentials([string(credentialsId: "$SONAR_CREDENTIAL_ID", variable: 'SONAR_TOKEN')]) {
-                    withSonarQubeEnv('sonarqube') {
-                      script{
-                            // check the SONAR_ variables in all environment vars
-                            def output = sh(returnStdout: true, script: 'env')
-                            echo "Output: ${output}"    
-                            
-                            // or use directly
-                            echo "${env.SONAR_HOST_URL}"
-                            echo "${env.SONAR_CONFIG_NAME}"
-                        }
+                withSonarQubeEnv('sonarqube') {
+                  script{
+                        // check the SONAR_ variables in all environment vars
+                        def output = sh(returnStdout: true, script: 'env')
+                        echo "Output: ${output}"    
+                        
+                        // or use directly
+                        echo "${env.SONAR_HOST_URL}"
+                        echo "${env.SONAR_CONFIG_NAME}"
                     }
                 }
             }
