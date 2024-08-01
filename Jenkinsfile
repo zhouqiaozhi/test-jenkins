@@ -5,6 +5,10 @@ pipeline {
         }
     }
 
+    environment {
+        SONAR_CREDENTIAL_ID = 'sonarqubetoken'
+    }
+
     stages {
         stage('unit test') {
             steps {
@@ -14,10 +18,10 @@ pipeline {
 
         stage('sonarqube analysis') {
             steps {
-                withCredentials([string(credentialsId: "sonarqube-token", variable: "SONAR_TOKEN")]) {
+                withCredentials([string(credentialsId: "$SONAR_CREDENTIAL_ID", variable: 'SONAR_TOKEN')]) {
                     withSonarQubeEnv('sonarqube') {
                         sh "chmod +x gradlew"
-                        sh './gradlew sonarqube'
+                        sh './gradlew sonarqube -Dsonar.projectName=test'
                     }
                 }
             }
