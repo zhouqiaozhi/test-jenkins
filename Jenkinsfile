@@ -16,7 +16,7 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: "sonarqube-token", variable: "SONAR_TOKEN")]) {
                     withSonarQubeEnv('sonarqube') {
-                        sh './gradlew sonar:sonar -Dsonar.projectKey=test'
+                        sh './gradlew sonarqube'
                     }
                 }
             }
