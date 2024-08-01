@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment {
-        SONAR_CREDENTIAL_ID = 'sonarqubetoken'
+        SONAR_CREDENTIAL_ID = 'sonarqube-token'
     }
 
     stages {
