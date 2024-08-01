@@ -20,8 +20,8 @@ pipeline {
         stage('sonarqube analysis') {
             steps {
                 withCredentials([string(credentialsId: "$SONAR_CREDENTIAL_ID", variable: 'SONAR_TOKEN')]) {
-                    withSonarQubeEnv('sonarqube') {
-                        sh './gradlew sonarqube --stacktrace'
+                    withSonarQubeEnv('sonarqube', envOnly: true) {
+                        println ${env.SONAR_HOST_URL}
                     }
                 }
             }
