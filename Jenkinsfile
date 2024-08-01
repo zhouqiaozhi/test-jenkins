@@ -12,7 +12,8 @@ pipeline {
     stages {
         stage('unit test') {
             steps {
-                echo 'sh ./gradlew clean test'
+                sh 'chmod +x gradlew'
+                sh './gradlew clean test'
             }
         }
 
