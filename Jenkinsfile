@@ -9,14 +9,14 @@ pipeline {
         stage('unit test') {
             steps {
                 sh 'chmod +x gradlew'
-                sh './gradlew clean test --warning-mode=all'
+                sh './gradlew clean test'
             }
         }
 
         stage('sonarqube analysis') {
             steps {
                 withSonarQubeEnv('sonarqube') {
-                  sh './gradlew sonar --warning-mode=all'
+                  sh './gradlew sonar'
                 }
             }
         }
