@@ -36,9 +36,6 @@ pipeline {
         }
 
         stage('deploy') {
-            when {
-                branch 'main'
-            }
             steps {
                 sh 'kubectl apply -f deploy/delpoy-main.yaml'
             }
