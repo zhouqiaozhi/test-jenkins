@@ -21,10 +21,24 @@ pipeline {
             }
         }
         
-        stage('build & build image') {
+        stage('build') {
             steps {
                 sh './gradlew bootJar'
+            }
+        }
+
+        stage('build image') {
+            steps {
                 sh 'docker build -t test .'
+            }
+        }
+
+        stage('deploy') {
+            when {
+                branch 'main'
+            }
+            steps {
+                sh 'kubectl apply -f deploy/delpoy-main.yaml'
             }
         }
     }
