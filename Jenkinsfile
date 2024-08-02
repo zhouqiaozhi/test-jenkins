@@ -20,6 +20,13 @@ pipeline {
                 }
             }
         }
+        
+        stage('build & build image') {
+            steps {
+                sh './gradlew bootJar'
+                sh 'docker build -t test .'
+            }
+        }
     }
 }
 
