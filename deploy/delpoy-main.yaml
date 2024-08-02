@@ -33,12 +33,10 @@ spec:
         app: test
         tier: backend
     spec:
-#      imagePullSecrets:
-#      - name: repo-secret
       containers:
       - name: test
         image: 10.103.133.104:5000/test
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
           protocol: TCP
