@@ -27,9 +27,11 @@ pipeline {
             }
         }
 
-        stage('build image') {
+        stage('build & push image') {
             steps {
                 sh 'docker build -t test .'
+                sh 'docker tag test 10.103.133.104:5000/test'
+                sh 'docker push 10.103.133.104:5000/test'
             }
         }
 
